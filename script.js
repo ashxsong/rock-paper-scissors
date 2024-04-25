@@ -4,3 +4,12 @@ function getComputerChoice() {
   (num === 1) ? "paper" :
   "scissors";
 }
+
+function getHumanChoice() {
+  let choice = "";
+  while (choice != "rock" && choice != "paper" && choice != "scissors") {
+    choice = prompt("Choice (rock, paper, or scissors): ");
+    choice = choice.toLowerCase();
+  }
+  return choice;
+}
