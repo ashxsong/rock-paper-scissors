@@ -33,10 +33,45 @@ function playRound(humanChoice, computerChoice) {
 const buttons = document.querySelectorAll("button");
 const results = document.querySelector("#results");
 
+let rounds = 0;
+let humanScore = 0;
+let computerScore = 0;
+
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
-    const result = document.createElement("p");
+    let result = document.createElement("p");
     result.textContent = playRound(button.id, getComputerChoice());
+    if (result.textContent.substring(4, 5) === "w") {
+      humanScore++;
+    }
+    if (result.textContent.substring(4, 5) === "l") {
+      computerScore++;
+    }
+    rounds++;
+    let roundNumber = document.createElement("h3");
+    let humanResult = document.createElement("p");
+    let computerResult = document.createElement("p");
+    let finalResult = document.createElement("h3");
+    roundNumber.textContent = "Round " + rounds;
+    humanResult.textContent = "Your score: " + humanScore;
+    computerResult.textContent = "Computer score: " + computerScore;
+    results.appendChild(roundNumber);
     results.appendChild(result);
+    results.appendChild(humanResult);
+    results.appendChild(computerResult);
+    if (humanScore === 5) {
+      finalResult.textContent = "You win!"
+      buttons.forEach((button) => {
+        button.disabled = true;
+      })
+      results.appendChild(finalResult);
+    }
+    if (computerScore === 5) {
+      finalResult.textContent = "You lose!"
+      buttons.forEach((button) => {
+        button.disabled = true;
+      })
+      results.appendChild(finalResult);
+    }
   });
 });
