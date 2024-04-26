@@ -33,32 +33,10 @@ function playRound(humanChoice, computerChoice) {
   }
 }
 
-function playGame() {
-  let humanScore = 0;
-  let computerScore = 0;
-  for (let i = 0; i < 5; i++) {
-    const humanSelection = getHumanChoice();
-    const computerSelection = getComputerChoice();
-    let round = playRound(humanSelection, computerSelection);
-    if (round == "human") {
-      humanScore++;
-    }
-    if (round == "computer") {
-      computerScore++;
-    }
-    console.log("Human Score: " + humanScore);
-    console.log("Computer Score: " + computerScore);
-    console.log("");
-  }
-  if (humanScore < computerScore) {
-    console.log("You lose!");
-  }
-  else if (humanScore > computerScore) {
-    console.log("You win!");
-  }
-  else {
-    console.log("It's a tie!");
-  }
-}
+const buttons = document.querySelectorAll("button");
 
-playGame();
+buttons.forEach((button) => {
+  button.addEventListener("click", () => {
+    playRound(button.id, getComputerChoice());
+  });
+});
