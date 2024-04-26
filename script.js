@@ -20,23 +20,23 @@ function playRound(humanChoice, computerChoice) {
   if ((humanChoice == "rock" && computerChoice == "scissors") ||
       (humanChoice == "paper" && computerChoice == "rock") ||
       (humanChoice == "scissors" && computerChoice == "paper")) {
-    console.log(`You win! ${capitalHumanChoice} beats ${capitalComputerChoice}`);
-    return "human";
+    return `You win! ${capitalHumanChoice} beats ${capitalComputerChoice}`;
   }
   else if (humanChoice == computerChoice) {
-    console.log(`It's a tie with ${capitalHumanChoice}!`);
-    return "none";
+    return `It's a tie with ${capitalHumanChoice}!`;
   }
   else {
-    console.log(`You lose! ${capitalComputerChoice} beats ${capitalHumanChoice}`);
-    return "computer";
+    return `You lose! ${capitalComputerChoice} beats ${capitalHumanChoice}`;
   }
 }
 
 const buttons = document.querySelectorAll("button");
+const results = document.querySelector("#results");
 
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
-    playRound(button.id, getComputerChoice());
+    const result = document.createElement("p");
+    result.textContent = playRound(button.id, getComputerChoice());
+    results.appendChild(result);
   });
 });
